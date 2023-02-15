@@ -12,10 +12,12 @@ type Config struct {
 	Target struct {
 		IgnoreCertificateErrors bool   `yaml:"ignore-certificate-errors" env:"KIOSK_IGNORE_CERTIFICATE_ERRORS" env-description:"ignore SSL/TLS certificate errors" env-default:"false"`
 		IsPlayList              bool   `yaml:"playlist" env:"KIOSK_IS_PLAYLIST" env-default:"false" env-description:"URL is a playlist"`
-		LoginMethod             string `yaml:"login-method" env:"KIOSK_LOGIN_METHOD" env-default:"anon" env-description:"[anon|local|gcom|goauth|idtoken]"`
+		LoginMethod             string `yaml:"login-method" env:"KIOSK_LOGIN_METHOD" env-default:"anon" env-description:"[anon|local|gcom|goauth|idtoken|jwt]"`
 		Password                string `yaml:"password" env:"KIOSK_LOGIN_PASSWORD" env-default:"guest" env-description:"password"`
 		URL                     string `yaml:"URL" env:"KIOSK_URL" env-default:"https://play.grafana.org" env-description:"URL to Grafana server"`
 		Username                string `yaml:"username" env:"KIOSK_LOGIN_USER" env-default:"guest" env-description:"username"`
+		JwtHeaderName		string `yaml:"jwt-header-name" env:"KIOSK_JWT_HEADER_NAME" env-default:"X-JWT-Assertion" env-description:"HTTP Header carrying the JWT auth token"`
+		JwtToken		string `yaml:"jwt-token" env:"KIOSK_JWT_TOKEN" env-default:"" env-decription:"JWT encoded token to login"`
 	} `yaml:"target"`
 	GOAUTH struct {
 		AutoLogin     bool   `yaml:"auto-login" env:"KIOSK_GOAUTH_AUTO_LOGIN" env-description:"[false|true]"`
